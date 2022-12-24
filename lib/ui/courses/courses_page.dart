@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rwcourses/constants.dart';
+
+import '../../models/course.dart';
+import 'courses_controller.dart';
 
 class CoursesPage extends StatefulWidget {
   const CoursesPage({Key? key}) : super(key: key);
@@ -8,8 +12,19 @@ class CoursesPage extends StatefulWidget {
 }
 
 class _CoursesPageState extends State<CoursesPage> {
+  final _controller = CoursesController();
+
   @override
   Widget build(BuildContext context) {
-    return const Text("RWCourses");
+    return FutureBuilder<List<Course>>(
+      future: _controller.fetchCourses(Constants.allFilter),
+      builder: (context, snapshot) {
+        final courses = snapshot.data;
+        if (courses == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return const Text('RWCources');
+      },
+    );
   }
 }
