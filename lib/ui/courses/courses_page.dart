@@ -51,9 +51,13 @@ class _CoursesPageState extends State<CoursesPage> {
           Navigator.of(context).push<MaterialPageRoute>(MaterialPageRoute(
               builder: (context) => CourseDetailsPage(course: course)));
         },
-        trailing: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(course.artWorkUrl),
+        trailing: Hero(
+          tag: 'cardArtWork-${course.courseId}',
+          transitionOnUserGestures: true,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(course.artWorkUrl),
+          ),
         ),
       ),
     );
