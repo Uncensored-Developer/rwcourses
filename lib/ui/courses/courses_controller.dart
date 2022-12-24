@@ -1,11 +1,12 @@
+import 'package:rwcourses/repositories/course_repository.dart';
+
 import '../../models/course.dart';
-import '../../repositories/course_repository.dart';
 import '../../repositories/repository.dart';
 
 class CoursesController {
-  final Repository _respository = CourseRepository();
+  final Repository _repository = CourseRepository();
 
   Future<List<Course>> fetchCourses(int domainFilter) {
-    return _respository.getCourses(domainFilter);
+    return _repository.getCourses(domainFilter);
   }
 }

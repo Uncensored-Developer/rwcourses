@@ -23,8 +23,18 @@ class _CoursesPageState extends State<CoursesPage> {
         if (courses == null) {
           return const Center(child: CircularProgressIndicator());
         }
-        return const Text('RWCources');
+        return ListView.builder(
+          padding: const EdgeInsets.all(16.0),
+          itemCount: courses.length,
+          itemBuilder: (BuildContext context, int position) {
+            return _buildRow(courses[position]);
+          },
+        );
       },
     );
+  }
+
+  Widget _buildRow(Course course) {
+    return Text(course.name);
   }
 }
