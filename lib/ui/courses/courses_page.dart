@@ -35,6 +35,22 @@ class _CoursesPageState extends State<CoursesPage> {
   }
 
   Widget _buildRow(Course course) {
-    return Text(course.name);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListTile(
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Text(
+            course.name,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
+        subtitle: Text(course.domainString),
+        trailing: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.network(course.artWorkUrl),
+        ),
+      ),
+    );
   }
 }
