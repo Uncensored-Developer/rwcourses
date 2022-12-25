@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rwcourses/models/course.dart';
 import 'package:rwcourses/ui/course_detail/image_container.dart';
 import 'package:rwcourses/ui/utils/string_extensions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CourseDetailsPage extends StatelessWidget {
   const CourseDetailsPage({Key? key, required this.course}) : super(key: key);
@@ -21,6 +22,9 @@ class CourseDetailsPage extends StatelessWidget {
             _buildBanner(),
             _buildMain(context),
             _buildDetails(context),
+            TextButton(
+                onPressed: () => _launchCourse(course.courseId),
+                child: const Text('View Course'))
           ],
         ));
   }
@@ -78,5 +82,9 @@ class CourseDetailsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _launchCourse(String courseId) async {
+    await launchUrl(Uri.parse('https://raywenderlich.com/$courseId'));
   }
 }
